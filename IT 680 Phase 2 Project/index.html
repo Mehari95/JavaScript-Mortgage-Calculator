@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IT 680 Mortgage Calculator</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="loan_c.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<script type="text/javascript" src="loan_c.js" defer></script>
+	<script type="text/javascript" src="main.js" defer></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+</head>
+<body>
+<div id="main_container">
+	<h1 style="font-family: sans-serif; background-color: #1C2833; padding-top: 10px;padding-bottom: 10px; color: #F0F3F4 "><center>Mortgage Calculator</center></h1>
+<div id="container">
+<h2 style="font-family: sans-serif; background-color: #1C2833; padding-top: 10px;padding-bottom: 10px; color: #F0F3F4 "><center>User One</center></h2>
+<div id="source">
+	<form name="user_entry">
+		<table> 
+			<tr><td></td></tr>
+			<tr><td></td</tr>
+			<tr>
+				<td>Full Name:</td>
+				<td id="blue"><input type="text" name="fullname" size="10" value="User One" ></td>
+			</tr>
+			<tr>
+				<td>Home Value:<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span></td>
+				<td id="blue"><input type="text" name="home_value" size="10" value="500000" ></td>
+			</tr>
+			<tr>
+				<td>Down Payment:<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span></td>
+				<td><input type="text" name="down_payment" size="10" value="125000"></td>
+			</tr>
+			<tr>
+				<td>Loan Amount:<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span></td>
+				<td id="blue"><input type="text" name="loan_amt" size="10" value="375000" ></td>
+			</tr>
+		
+			<tr>
+				<td>Number of Months:</td>
+				<td id="blue"><input type="text" name="months" size="10" value="360"></td>
+			</tr>
+			<tr>
+				<td>Annual Interest Rate:</td>
+				<td id="blue"><input type="text" name="rate" size="10" value="5.0"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><b>Extra Payment Options:</b></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Add Monthly:<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span></td>
+				<td id="blue"><input type="text" name="extra_monthly" size="10" value="0"> </td>
+			</tr>
+			<tr>
+				<td>Add Yearly:<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span></td>
+				<td id="blue"><input type="text" name="extra_yearly" size="10" value="0"> </td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+		</table>
+	</form>
+
+</div>
+<div id="loan_summary">
+<h3 style="font-family: sans-serif;"><center>Mortgage Repayment Summary</center></h3>
+
+</div>
+
+<div id="saving">
+<h3 style="font-family: sans-serif;"><center>Saving by Extra Payment</center></h3>
+
+</div>
+<div style="margin-left: 600px;">
+	<input type="button" class="button_a" onclick = "checker(); validate();" value= "Calculate">
+	<br/><br/>
+	<input type="button" class="button_b" onclick = "reset(); startover();" value= "Reset" style="margin-left: 10px;" >
+</div>
+<div id="canvas">
+	<canvas id="chart" style="padding-bottom: 20px; padding-top: 20px;"></canvas>
+	<canvas id="myChart" style="padding-bottom: 20px; padding-top: 20px;"></canvas>
+</div>
+<div id="title">
+<h2><center>Amortization Table</center></h2>	
+</div>
+
+<div id="table_header">
+	<table cellpadding="5"> 
+		<td width="90" align="center" id="month"> <b>Month</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </td>
+		<td width="90" align="center" id="payment"> <b>Payment</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </td>
+		<td width="100" align="center" id="principal"> <b>Principal</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </td>
+		<td width="90" align="center" id="interest"> <b>Interest</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </td>
+		<td width="90" align="center" id="remaining"> <b>Remaining</b> </td>
+	</tr>
+	</table>
+</div>
+
+<div id="table">
+
+</div>
+ <small><center>&copy;Copyright | Powered by MNSU IT 680</center></small>
+</div>   <!--container ends here-->
+
+
+<div id="container_c">
+<h2 style="font-family: sans-serif; background-color: #1C2833; padding-top: 10px;padding-bottom: 10px; color: #F0F3F4 "><center>User Two</center></h2>
+<div id="source_c">
+	<form name="user_entry_c">
+		<table> 
+			<tr><td></td></tr>
+			<tr><td></td</tr>
+			<tr>
+				<td>Full Name:</td>
+				<td><input type="text" name="fullname_c" size="10" value="User Two" ></td>
+			</tr>
+			<tr>
+				<td>Home Value:<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span></td>
+				<td><input type="text" name="home_value_c" size="10" value="300000" ></td>
+			</tr>
+			<tr>
+				<td>Down Payment:<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span></td>
+				<td><input type="text" name="down_payment_c" size="10" value="100000"></td>
+			</tr>
+			<tr>
+				<td>Loan Amount:<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span></td>
+				<td><input type="text" name="loan_amt_c" size="10" value="200000" ></td>
+			</tr>
+		
+			<tr>
+				<td>Number of Months:</td>
+				<td><input type="text" name="months_c" size="10" value="180"></td>
+			</tr>
+			<tr>
+				<td>Annual Interest Rate:</td>
+				<td><input type="text" name="rate_c" size="10" value="6.0"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><b>Extra Payment Options:</b></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Add Monthly:<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span></td>
+				<td><input type="text" name="extra_monthly_c" size="10" value="0"> </td>
+			</tr>
+			<tr>
+				<td>Add Yearly:<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span></td>
+				<td><input type="text" name="extra_annualy" size="10" value="0"> </td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+		</table>
+	</form>
+
+<!--
+<div style="margin-left: 165px;">
+	<input type="button" class="button_c" onclick = "validate()" value= "Calculate">
+	<br/><br/>
+	<input type="button" class="button_c" onclick = "startover()" value= "Reset" style="margin-left: 10px;" >
+</div>
+-->
+</div>
+<div id="loan_summary_c">
+<h3 style="font-family: sans-serif;"><center>Mortgage Repayment Summary</center></h3>
+
+</div>
+
+<div id="saving_c">
+<h3 style="font-family: sans-serif;"><center>Saving by Extra Payment</center></h3>
+
+</div>
+
+<div id="canvas_c">
+	<canvas id="chart_c" style="padding-bottom: 20px; padding-top: 20px;"></canvas>
+	<canvas id="myChart_c" style="padding-bottom: 20px; padding-top: 20px;"></canvas>
+</div>
+
+<div id="title_c">
+<h2><center>Amortization Table</center></h2>	
+</div>
+
+<div id="table_header_c">
+	<table cellpadding="5"> 
+		<td width="90" align="center" id="month_c"> <b>Month</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </td>
+		<td width="90" align="center" id="payment_c"> <b>Payment</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </td>
+		<td width="100" align="center" id="principal_c"> <b>Principal</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </td>
+		<td width="90" align="center" id="interest_c"> <b>Interest</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </td>
+		<td width="90" align="center" id="remaining_c"> <b>Remaining</b> </td>
+	</tr>
+	</table>
+</div>
+
+<div id="table_c">
+
+</div>
+
+<small><center>&copy;Copyright | Powered by MNSU IT 680</center></small>
+
+</div> <!--container_c ends here-->
+</div> <!--main_container ends here-->
+</body>
+</html>
